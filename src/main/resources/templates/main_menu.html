@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <title>Main menu</title>
+    <style>
+        button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+
+<a th:href="@{/products}">
+    <button type="button">Список товаров.</button>
+</a>
+<br>
+<a th:href="@{/basket}">
+    <button type="button">Корзина.</button>
+</a>
+<br>
+<a th:href="@{/orders}">
+    <button type="button">История заказов.</button>
+</a>
+<br>
+<a href="/logout">
+    <button type="button">Выход</button>
+</a>
+
+</body>
+</html>

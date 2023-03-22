@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Basket</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        th, td {
+            padding: 8px;
+            text-align: left;
+            border-bottom: 1px solid #ddd;
+        }
+
+        th {
+            background-color: #f2f2f2;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+<h1>Корзина:</h1>
+<table>
+    <tr>
+        <th>Наименование товара</th>
+        <th>Цена товара</th>
+        <th>Количество</th>
+        <th>Сумма</th>
+        <th>Дополнительная информация</th>
+        <th>Удалить товар из корзины</th>
+    </tr>
+    <th:block th:if="${basketDetails != null}">
+        <tr th:each="basketDetail : ${basketDetails}">
+            <td th:text="${basketDetail.product.name}"></td>
+            <td th:text="${basketDetail.product.price}"></td>
+            <td th:text="${basketDetail.quantity}"></td>
+            <td th:text="${basketDetail.quantity * basketDetail.product.price}"></td>
+            <td>
+                <a th:href="@{/products/{id}(id=${basketDetail.id})}">Подробнее</a>
+            </td>
+            <td>
+                <form th:action="@{/basket/delete}" th:method="POST">
+                    <input type="hidden" name="basketDetailId" th:value="${basketDetail.id}"/>
+                    <button type="submit">Удалить</button>
+                </form>
+            </td>
+        </tr>
+    </th:block>
+</table>
+<h2 th:text="'Итого: ' + (${totalPrice} != null ? ${totalPrice} : 0) + ' рублей.'"></h2>
+<a th:href="@{/products}">
+    <button type="button">К списку товаров</button>
+</a>
+
+    <form th:if="${basket != null}" th:action="@{/basket/make_order}" th:method="POST">
+        <input type="hidden" name="basketId" th:value="${basket.id}"/>
+        <button type="submit">Оформить заказ</button>
+    </form>
+
+</body>
+</html>

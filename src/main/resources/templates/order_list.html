@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Orders</title>
+    <style>
+        table {
+            border-collapse: collapse;
+            width: 100%;
+        }
+
+        tr:nth-child(even) {
+            background-color: #f2f2f2;
+        }
+
+        button {
+            background-color: #4CAF50; /* Green */
+            border: none;
+            color: white;
+            padding: 5px 10px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 16px;
+            margin: 4px 2px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
+
+        button:hover {
+            background-color: #3e8e41;
+        }
+    </style>
+</head>
+<body>
+<tr th:if="${not #lists.isEmpty(ordersList)}" th:each="orders : ${ordersList}">
+    <td th:text="'Заказ № ' + ${orders.id} + ', дата: ' + ${#dates.format(orders.getDate(), 'dd-MM-yyyy')}"></td>
+    <td>
+        <a th:href="@{/orders/details}">Информация о заказе.</a>
+    </td>
+    <br>
+</tr>
+<tr th:if="${#lists.isEmpty(ordersList)}">
+    <td>
+        <h2>Вы пока не сделали ни одного заказа!</h2>
+    </td>
+</tr>
+<br/>
+<a th:href="@{/products}">
+    <button type="button">Список товаров</button>
+</a>
+</body>
+</html>
