@@ -1,9 +1,16 @@
 package ru.ecom.ecommerce.model;
 
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
 import javax.persistence.*;
 
 @Entity
 @Table(name = "order_detail")
+@Setter
+@Getter
+@NoArgsConstructor
 public class OrderDetail {
 
     @Id
@@ -24,49 +31,4 @@ public class OrderDetail {
 
     @Column(name = "quantity")
     private int quantity;
-
-    public OrderDetail() {
-    }
-
-
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public Product getProduct() {
-        return product;
-    }
-
-    public void setProduct(Product product) {
-        this.product = product;
-    }
-
-    public int getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(int quantity) {
-        this.quantity = quantity;
-    }
-
-    public long getProductPrice() {
-        return productPrice;
-    }
-
-    public void setProductPrice(long productPrice) {
-        this.productPrice = productPrice;
-    }
-
-    public Order getOrder() {
-        return order;
-    }
-
-    public void setOrder(Order order) {
-        this.order = order;
-    }
 }

@@ -1,10 +1,15 @@
 package ru.ecom.ecommerce.model;
 
+import lombok.*;
+
 import javax.persistence.*;
 import java.util.List;
 
 @Entity
 @Table(name = "basket")
+@Setter
+@Getter
+@NoArgsConstructor
 public class Basket {
 
     @Id
@@ -19,34 +24,7 @@ public class Basket {
     @OneToMany(mappedBy = "id")
     private List<BasketDetail> basketDetailList;
 
-    public Basket() {
-    }
-
     public Basket(Client client) {
         this.client = client;
-    }
-
-    public long getId() {
-        return id;
-    }
-
-    public void setId(long id) {
-        this.id = id;
-    }
-
-    public Client getClient() {
-        return client;
-    }
-
-    public void setClient(Client client) {
-        this.client = client;
-    }
-
-    public List<BasketDetail> getBasketDetailList() {
-        return basketDetailList;
-    }
-
-    public void setBasketDetailList(List<BasketDetail> basketDetailList) {
-        this.basketDetailList = basketDetailList;
     }
 }
